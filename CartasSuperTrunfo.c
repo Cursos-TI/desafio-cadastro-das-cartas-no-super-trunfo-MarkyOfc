@@ -4,11 +4,16 @@ char estado1, estado2;
 char codcarta1[3], codcarta2[3];
 char cidade1[150], cidade2[150];
 
-int populacao1, populacao2, pontostur1, pontostur2;     // VARIAVEIS 1 E 2 SEPARADAS EM CHAR, INT E FLOAT
+unsigned long int populacao1, populacao2;
+int pontostur1, pontostur2;     // VARIAVEIS 1 E 2 SEPARADAS EM CHAR, INT E FLOAT
 
 float area1, area2, pib1, pib2;
 float densipopula1, densipopula2;
 float pibcapta1, pibcapta2;
+
+float superpoder1, superpoder2;
+float result1, result2;
+int resultcomparacao;
 
 int main(){
 
@@ -25,7 +30,7 @@ int main(){
     scanf("%s", &cidade1);
 
         printf("Digite o número de habitantes da cidade.\n");
-    scanf("%d", &populacao1);
+    scanf("%ld", &populacao1);
 
         printf("Digite a área da cidade em quilômetros quadrados(km²).\n");
     scanf("%f", &area1);
@@ -40,7 +45,7 @@ int main(){
     printf("RESULTADO CARTA 01: \nEstado: %c", estado1);
     printf("\nCódigo: %s",codcarta1);
     printf("\nCidade: %s",cidade1);
-    printf("\nPopulação: %d",populacao1);                   // INFORMAÇÕES DA 1ª CARTA !!!
+    printf("\nPopulação: %ld",populacao1);                   // INFORMAÇÕES DA 1ª CARTA !!!
     printf("\nÁrea: %.2f",area1);
     printf("\nPIB: %.2f", pib1);
     printf("\nPontos turisticos: %d", pontostur1);
@@ -50,6 +55,11 @@ int main(){
 
         pibcapta1 = (pib1 / populacao1);                    // CALCULA PIB PER CAPITA (PIB / POPULAÇÃO)
     printf("\nPIB per capita: %.2f reais.", pibcapta1);
+
+        superpoder1 = ((populacao1 + area1 + pib1 + pontostur1 + pibcapta1) - densipopula1); // CALCULA O SUPERPODER DA CARTA
+    printf("\nValor do SUPER PODER: %.2f", superpoder1);
+
+        result1 = (populacao1 + area1 + pib1 + pontostur1 + pibcapta1 + densipopula1);
 
     // ----- FIM DA PRIMEIRA CARTA -----
 
@@ -65,7 +75,7 @@ int main(){
     scanf("%s", &cidade2);
 
     printf("Digite o número de habitantes da cidade.\n");
-    scanf("%d", &populacao2);
+    scanf("%ld", &populacao2);
 
     printf("Digite a área da cidade em quilômetros quadrados(km²).\n");
     scanf("%f", &area2);
@@ -79,7 +89,7 @@ int main(){
     printf("*** RESULTADO CARTA 02: ***\nEstado: %c", estado2);
     printf("\nCódigo: %s",codcarta2);
     printf("\nCidade: %s",cidade2);
-    printf("\nPopulação: %d",populacao2);                   // INFORMAÇÕES DA 2ª CARTA !!!
+    printf("\nPopulação: %ld",populacao2);                   // INFORMAÇÕES DA 2ª CARTA !!!
     printf("\nÁrea: %.2f",area2);
     printf("\nPIB: %.2f", pib2);
     printf("\nPontos turisticos: %d", pontostur2);
@@ -90,7 +100,18 @@ int main(){
         pibcapta2 = (pib2 / populacao2);                    // CALCULA PIB PER CAPITA (PIB / POPULAÇÃO)
     printf("\nPIB per capita: %.2f reais.\n", pibcapta2);
 
-    printf("********** FIM DE JOGO **********");            // ----- FIM DA SEGUNDA CARTA -----
+        superpoder2 = ((populacao2 + area2 + pib2 + pontostur2 + pibcapta2) - densipopula2); // CALCULA O SUPERPODER DA CARTA
+    printf("\nValor do SUPER PODER: %.2f", superpoder2);
+
+        result2 = (populacao2 + area2 + pib2 + pontostur2 + pibcapta2) - densipopula2;
+
+    printf("\n********** COMPARAÇÃO **********\n");
+
+        resultcomparacao = result1 > result2;      // <--- CALCULA A CARTA VENCEDORA (0 = CARTA 2, 1 = CARTA1).
+
+    printf("\nO RESULTADO É: %d", resultcomparacao);
+
+    printf("\n********** FIM DE JOGO **********");            // ----- FIM DA SEGUNDA CARTA -----
 
     return 0;
 }
